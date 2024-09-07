@@ -13,3 +13,4 @@ Name using heirarchical naming, all lowercase, underscore separator. Ex. `photo_
 ## Script utilities
 
 - **chmox** Quickly makes new scripts executable. `chmox <script>`
+- **mksh** Opens a new executable shell script in Vim. `mksh <new_script>`

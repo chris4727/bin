@@ -1,0 +1,7 @@
+#!/usr/bin/sh
+# ==  MKSH  ======================================
+
+touch "$1"
+chmod +x "$1"
+printf "#!/usr/bin/sh\n\n" >> "$1"
+vim "$1"
