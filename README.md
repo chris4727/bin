@@ -2,6 +2,8 @@
 
 Local binaries and scripts for simple tools.
 
+Name using heirarchical naming, all lowercase, underscore separator. Ex. `photo_rename`, `video_to_h264`.
+
 # Planned
 
 ## Photography
