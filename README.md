@@ -8,6 +8,7 @@ Name using heirarchical naming, all lowercase, underscore separator. Ex. `photo_
 
 ## Photography
 
+- **generate_lut** Create a HaldCLUT. See the *How it works* section of [RawTherapee: Film Simulation](https://rawpedia.rawtherapee.com/Film_Simulation) for example code to generate with ImageMagick.
 - **photo_rename** Rename and reorganize photos into `/YYYY/YYYYMM/YYYYMMDDHHMMSS.ext` based on creation date metadata.[9 Degrees Below Photography: EXIF Commands](https://ninedegreesbelow.com/photography/exiftool-commands.html)
 
 ## Script utilities
