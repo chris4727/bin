@@ -11,6 +11,8 @@ Name using heirarchical naming, all lowercase, underscore separator. Ex. `photo_
 
 # Planned
 
+- **backup** Daily, weekly, and monthly backups of home directory. See [Tony Teaches Tech](https://tonyteaches.tech/rsync-backup-tutorial/) 
+
 ## Photography
 
 - **generate_lut** Create a HaldCLUT. See the *How it works* section of [RawTherapee: Film Simulation](https://rawpedia.rawtherapee.com/Film_Simulation) for example code to generate with ImageMagick.
