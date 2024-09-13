@@ -1,4 +1,8 @@
 #!/usr/bin/sh
 # == DAILY BACKUP ===============================
 
-
+# The following tar command will create a compressed archive of the ~/.config/ directory in the ~/.local/backup/daily/ directory. 
+# TODO Check if backup directory exists, if not, create it.
+tar -zcf $HOME/.local/backup/daily/$(date +%Y%m%d)-backup.tar.gz $HOME/.config/
+# The find command will remove all daily backups that are older than 7 days
+find $HOME/.local/backup/daily/* -mtime +7 -delete
