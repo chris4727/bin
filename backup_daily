@@ -6,3 +6,5 @@
 tar -zcf $HOME/.local/backup/daily/$(date +%Y%m%d)-backup.tar.gz $HOME/.config/
 # The find command will remove all daily backups that are older than 7 days
 find $HOME/.local/backup/daily/* -mtime +7 -delete
+# TODO add rsync command to copy everything in the ~/.local/backups/ dir
+# to an external machine or drive
