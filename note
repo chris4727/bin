@@ -1,0 +1,76 @@
+#! /usr/bin/bash 
+# == NOTE ==============================================
+# Author: Chris Pyke
+#
+# Creates a new note if it does not currently exist
+# Inspired by github.com/mischavandenburg/dotfiles/blob/main/scripts/zet
+# Dependencies:
+# - 
+# ======================================================
+
+# ---  SECTION   ---------------------------------------
+
+# TODO
+# - Note with no arguments opens fzf to search for file and open. 
+#   If no file is found, then create it.
+# - check if file already exists
+#   See https://github.com/connermcd/bin/blob/master/notate
+# - Create note from template in ~/Templates/
+notedir="$HOME/Notes/"
+inboxdir="$notedir/0-inbox/"
+echo $notedir
+# function to prompt the user for a filename
+getfilename() {
+	read -p "Enter a filename: " filename
+	echo "$filename"
+}
+
+# function to create and open a file in the specified directory
+openfile() {
+	# Cd into the directory
+	cd "$1" || exit
+	# Create the file in the specified directory
+	touch "$1/$filename.md"
+
+	# create unique identifier and links section
+	timestamp="$(date +"%Y%m%d%H%m%S")"
+	date="$(date +"%Y-%m-%d")"
+
+	# format the file
+	{
+		echo "---"
+		echo "title: \"$filename\""
+		echo "date: \"$date\""
+		echo "keywords: [keyword]"
+		echo "---"
+		printf "\n\n"
+	} >>"$1/$filename.md"
+
+	# Open the file in Vim
+	vim '+ normal ggzzi' "$1/$filename.md"
+}
+
+# Prompt the user if no filename is provided
+if [[ $# -eq 0 ]]; then
+	filename=$(getfilename)
+fi
+
+# if more than one argument is given, print error message and stop script
+if [[ $# != 1 ]]; then
+	echo "Please provide only one filename separated by dashes, without .md extension."
+	echo "Example: note my-new-note"
+	exit 1
+fi
+
+# set filename to the argument given to the script
+if [[ $# -eq 1 ]]; then
+	filename=$1
+fi
+
+main() {
+  getfilename
+  openfile "$inboxdir"
+}
+
+
+
