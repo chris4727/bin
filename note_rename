@@ -1,0 +1,51 @@
+#!/usr/bin/sh
+# == NOTE RENAME ================================
+#
+# Renames the note, and all references to the note within [[links]]
+
+notedir="$HOME/Notes/"
+echo $notedir
+
+# function to prompt the user for a filename
+getfilename() {
+	read -p "Enter current filename: " oldname
+	read -p "Enter a new filename: " newname
+	echo "$filename"
+}
+
+# Rename file given in arg 1 to name in arg 2
+renamefile() {
+  echo "$oldname.md $newname.md"
+}
+
+# Rename references to oldname in all [[links]] in note dir
+renamelinks() {
+  grep -ro "\[\[.*\]\]" $notedir
+}
+
+# Prompt the user if no filename is provided
+if [[ $# -eq 0 ]]; then
+	filename=$(getfilename)
+fi
+
+# if num args != 2, print error message and stop script
+if [[ $# != 2 ]]; then
+	echo "Please provide only two filenames separated by dashes, without .md extension."
+	echo "Example: note_rename current-note new-note-name"
+	exit 1
+fi
+
+# set filename to the argument given to the script
+if [[ $# -eq 2 ]]; then
+	oldname=$1
+  newname=$2
+fi
+
+main() {
+  #getfilename
+  renamefile
+  #renamelinks
+}
+
+main
+
