@@ -1,0 +1,14 @@
+#!/usr/bin/sh
+# == NOTE SEARCH ================================
+# Return all values within "[[wikilinks]]" excluding the brackets
+# This in turn can be fuzzy matched with `fzf`
+note_dir=$HOME/Notes
+
+# FIXME Currently returns the enture path, and everything between
+#       the first [[ and the last ]]. 
+#       We want just what is within the brackets to allow fuzzy
+#       matching with `fzf`.
+grep -ro "\[\[.*\]\]" $note_dir
+
+# TODO Once the results are fuzzy matched, we want to return only the
+# filepath to the note we are interested in opening.
