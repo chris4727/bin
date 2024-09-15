@@ -6,6 +6,11 @@ Name using heirarchical naming, all lowercase, underscore separator. Ex. `photo_
 
 # Scripts
 
+## Notes
+
+- **note_rename** Renames the note, and all references to the note within `[[wikilinks]]` in the Notes directory.
+- **note_search** Fuzzy search all values within `[[wikilinks]]` in the Notes directory. 
+
 ## Photography
 
 - **generate_lut** Create a HaldCLUT. See the *How it works* section of [RawTherapee: Film Simulation](https://rawpedia.rawtherapee.com/Film_Simulation) for example code to generate with ImageMagick.
