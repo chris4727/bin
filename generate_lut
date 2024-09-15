@@ -1,0 +1,4 @@
+#!/usr/bin/sh
+# == GENERATE HaldCLUT ==========================
+
+magick hald:12 -depth 16 -colorspace sRGB /home/cp/Pictures/luts/hald12_16bit.png
