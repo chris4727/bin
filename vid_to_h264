@@ -10,16 +10,20 @@
 #
 
 # Define color variables
-blue='\033[1;34m'
-green='\033[0;32m'
-purple='\033[0;35m'
-nc='\033[0m' # No Color
+def_colors () {
+  blue='\033[1;34m'
+  green='\033[0;32m'
+  purple='\033[0;35m'
+  nc='\033[0m' # No Color
+}
 
+pre_count () {
+  count="${f%.*}"
 #TODO Count how many video files and save as $count
-count="${f%.*}"
 #TODO printf the line count to tell user how many files to check
 #TODO After completion, check how many files are in completed/
-  
+}
+
 #------------------------------------------------
 # Creates variable $f for all items with listed extensions.
 for f in *.{mp4,mkv}; do
@@ -29,22 +33,30 @@ for f in *.{mp4,mkv}; do
   vid="${f%.*}"
 
   # Get the codec of video $f using ffprobe:
-  vcodec="$(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 "$f")"
   # If the codec is not equal to h264 then convert it
   if [ "$vcodec" != "h264" ]; then
-    printf "${blue}:: ${nc}Converting ${purple}$vid${nc} to h264\n"
-	#TODO Instead of moving to a directory, append $vid.h264.mkv
-  # Convert to h264 8-bit
-    ffmpeg -v error -i "$f" -c:v h264 -crf 18 -vf format=yuv420p -c:a copy "h264-$vid.mkv"
-	#TODO Print 'Completed <num> of <total>'
-    printf "${green}-> Completed${nc}\n"
   else
     echo The video codec is already h264
   fi
 
 done
 
-##TODO ask user if they want to remove the .m4v files after conversion
+get_codec () {
+  #TODO Change $f to provided argument.
+  vid_codec="$(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 "$f")"
+}
+
+convert_vid () {
+  printf "${blue}:: ${nc}Converting ${purple}$vid${nc} to h264\n"
+  #TODO Change $f to provided argument.
+    # Convert to h264 8-bit
+      ffmpeg -v error -i "$f" -c:v h264 -crf 18 -vf format=yuv420p -c:a copy "h264-$vid.mkv"
+  	#TODO Instead of moving to a directory, append $vid.h264.mkv
+  printf "${green}-> Completed${nc}\n"
+  ##TODO ask user if they want to remove the .m4v files after conversion
+}
+
+#TODO Print 'Completed <num> of <total>'
 echo Conversion complete
 
 
