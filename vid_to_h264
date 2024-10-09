@@ -16,6 +16,12 @@ vars() {
   nc="\033[0m" # No Color
 }
 
+echo_vars() {
+  printf "$input_file\n"
+  printf "$filename\n"
+  printf "$height\n"
+}
+
 check_args() {
   if [ $# -ne 2 ]; then
     printf "${red}Error:${nc} This script expects two arguments, <input-video> and <output height in pixels> (1080, 720, 480).\n"
@@ -44,6 +50,7 @@ convert_vid() {
 
 main() {
   vars "$@"
+  #echo_vars
   check_args "$@"
   convert_vid
   printf "${grn}==>${nc} Conversion completed.\n"
