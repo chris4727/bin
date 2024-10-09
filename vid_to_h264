@@ -33,19 +33,13 @@ check_args() {
 convert_vid() {
     # Convert to h264 8-bit
   printf "${blu}:: ${nc}Converting ${prp}$input_file${nc} to $height, 8-bit h264\n"
-  echo 'ffmpeg \
     # Only output errors 
-    -v error \
-    -i "$input_file" \
     # h264
-    -c:v libx264 \
     # Compression. 0 Best quality, largest file
-    -crf 20 \
     # Sets pixel height keeping aspect ratio
     # 8-bit for max compatibility
-    -vf scale=-2:"$height",format=yuv420p \
-    -c:a copy \
-    ${filename}-h264.mp4'
+  ffmpeg -v error -i "$input_file" -c:v libx264 -crf 20 -vf scale=-2:"$height",format=yuv420p -c:a copy ${filename}-h264.mp4
+    #&
 }
 
 main() {
