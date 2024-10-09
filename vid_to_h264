@@ -1,0 +1,50 @@
+#! /usr/bin/bash 
+# == Vid Convert to H264 ======================
+# Author: chris4727
+# List codec of all videos in directory recursively
+# Convert anything other than H264 to H264
+# Dependencies:
+# - ffmpeg
+# - ffprobe
+# =============================================
+#
+
+# Define color variables
+blue='\033[1;34m'
+green='\033[0;32m'
+purple='\033[0;35m'
+nc='\033[0m' # No Color
+
+#TODO Count how many video files and save as $count
+count="${f%.*}"
+#TODO printf the line count to tell user how many files to check
+#TODO After completion, check how many files are in completed/
+  
+#------------------------------------------------
+# Creates variable $f for all items with listed extensions.
+for f in *.{mp4,mkv}; do
+  [[ -f "$f" ]] || continue # skip if not regular file
+  
+  #Set $vid to the filename minus extension
+  vid="${f%.*}"
+
+  # Get the codec of video $f using ffprobe:
+  vcodec="$(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 "$f")"
+  # If the codec is not equal to h264 then convert it
+  if [ "$vcodec" != "h264" ]; then
+    printf "${blue}:: ${nc}Converting ${purple}$vid${nc} to h264\n"
+	#TODO Instead of moving to a directory, append $vid.h264.mkv
+  # Convert to h264 8-bit
+    ffmpeg -v error -i "$f" -c:v h264 -crf 18 -vf format=yuv420p -c:a copy "h264-$vid.mkv"
+	#TODO Print 'Completed <num> of <total>'
+    printf "${green}-> Completed${nc}\n"
+  else
+    echo The video codec is already h264
+  fi
+
+done
+
+##TODO ask user if they want to remove the .m4v files after conversion
+echo Conversion complete
+
+
