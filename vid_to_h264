@@ -1,62 +1,54 @@
 #! /usr/bin/bash 
-# == Vid Convert to H264 ======================
+# ==  CONVERT VID TO H264 ======================
 # Author: chris4727
-# List codec of all videos in directory recursively
-# Convert anything other than H264 to H264
 # Dependencies:
 # - ffmpeg
-# - ffprobe
-# =============================================
-#
 
-# Define color variables
-def_colors () {
-  blue='\033[1;34m'
-  green='\033[0;32m'
-  purple='\033[0;35m'
-  nc='\033[0m' # No Color
+
+vars() {
+  input_file="$1"
+  filename=${1%%.*}
+  height="$2"
+  red="\033[0;31m"
+  blu="\033[0;34m"
+  grn="\033[0;32m"
+  prp="\033[0;35m"
+  nc="\033[0m" # No Color
 }
 
-pre_count () {
-  count="${f%.*}"
-#TODO Count how many video files and save as $count
-#TODO printf the line count to tell user how many files to check
-#TODO After completion, check how many files are in completed/
-}
-
-#------------------------------------------------
-# Creates variable $f for all items with listed extensions.
-for f in *.{mp4,mkv}; do
-  [[ -f "$f" ]] || continue # skip if not regular file
-  
-  #Set $vid to the filename minus extension
-  vid="${f%.*}"
-
-  # Get the codec of video $f using ffprobe:
-  # If the codec is not equal to h264 then convert it
-  if [ "$vcodec" != "h264" ]; then
-  else
-    echo The video codec is already h264
+check_args() {
+  if [ $# -ne 2 ]; then
+    printf "${red}Error:${nc} This script expects two arguments, <input-video> and <output height in pixels> (1080, 720, 480).\n"
+    printf "${grn}Usage:${nc} 'vid_to_h264 input.mp4 480'\n"
+    exit 1
   fi
-
-done
-
-get_codec () {
-  #TODO Change $f to provided argument.
-  vid_codec="$(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 "$f")"
 }
 
-convert_vid () {
-  printf "${blue}:: ${nc}Converting ${purple}$vid${nc} to h264\n"
-  #TODO Change $f to provided argument.
+convert_vid() {
     # Convert to h264 8-bit
-      ffmpeg -v error -i "$f" -c:v h264 -crf 18 -vf format=yuv420p -c:a copy "h264-$vid.mkv"
-  	#TODO Instead of moving to a directory, append $vid.h264.mkv
-  printf "${green}-> Completed${nc}\n"
-  ##TODO ask user if they want to remove the .m4v files after conversion
+  printf "${blu}:: ${nc}Converting ${prp}$input_file${nc} to $height, 8-bit h264\n"
+  echo 'ffmpeg \
+    # Only output errors 
+    -v error \
+    -i "$input_file" \
+    # h264
+    -c:v libx264 \
+    # Compression. 0 Best quality, largest file
+    -crf 20 \
+    # Sets pixel height keeping aspect ratio
+    # 8-bit for max compatibility
+    -vf scale=-2:"$height",format=yuv420p \
+    -c:a copy \
+    ${filename}-h264.mp4'
 }
 
-#TODO Print 'Completed <num> of <total>'
-echo Conversion complete
+main() {
+  vars
+  check_args
+  convert_vid
+  printf "${grn}==>${nc} Conversion completed.\n"
+}
+
+main "$@"
 
 
