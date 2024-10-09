@@ -43,8 +43,8 @@ convert_vid() {
 }
 
 main() {
-  vars
-  check_args
+  vars "$@"
+  check_args "$@"
   convert_vid
   printf "${grn}==>${nc} Conversion completed.\n"
 }
