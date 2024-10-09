@@ -1,0 +1,108 @@
+#!/bin/bash
+# ==  PANDOC DOCUMENT COMPILE  ==================
+# Author: chris4727
+# Compiles markdown document into multiple formats
+#
+# Dependencies:
+# - Pandoc
+# TODO Check that Pandoc is in the path
+
+check_args() {
+# Exit and print error if the number of args does not equal 1
+# TODO Check that one file with .md extension is provided
+# TODO Allow input of a defaults.ymd file instead of a markdown file
+  if [[ $# != 1 ]]; then
+    printf "${red}Error:${nc} Please specify Markdown file to compile.\n"
+    printf "${grn}Usage:${nc} 'rulecompile inputfile.md'\n"
+    exit 1
+  fi
+}
+
+vars() {
+  # Reads in file, defines $base as the filename minus the extension
+  file="$1"
+  base="${file%.md}"
+  outputdir="./output/"
+  # TODO Move $templatedir to pandoc data dir as returned with `pandoc -v | grep "User data directory:"`
+  templatedir="./templates/"
+  # Define color variables
+  red="\033[0;31m"
+  grn="\033[0;32m"
+  yel="\033[0;33m"
+  blu="\033[0;34m"
+  nc="\033[0m" # No Color
+  # Define Pandoc templates/reference docs
+  docx_template="$templatedir"template.docx
+}
+
+check_dirs() {
+  printf "${yel}==>${nc} Preparing compilation of $file\n"
+  if [ ! -d "$outputdir" ]; then
+    mkdir "$outputdir"
+    printf "${blu} ->${nc} Creating  $outputdir\n"
+  fi
+  if [ ! -d "$templatedir" ]; then
+    mkdir "$templatedir"
+    printf "${blu} ->${nc} Creating  $templatedir\n"
+  fi
+}
+
+echo_vars() {
+  echo file "$file"
+  echo base "$base"
+  echo outputdir "$outputdir"
+  echo outputdirbase"$outputdir""$base"
+  echo templatedir "$templatedir"
+}
+
+#TODO Check if files exist, and remove if they are
+# ---  CLEAN  ------------------------------------
+clean() {
+  printf "${red}:: ${nc} Removing existing files in $outputdir\n"
+  rm -f "$outputdir""$base"*
+}
+
+# ---  COMPILE  ----------------------------------
+
+docx() {
+  printf "${blu}-->${nc} Compiling \"$base\"-.docx\n"
+  pandoc --toc --reference-doc "$docx_template" "$file" -o "$outputdir""$base"-.docx
+}
+
+html() {
+  printf "${blu}-->${nc} Compiling \"$base\".html\n"
+  pandoc --toc --standalone --mathml "$file" -o "$outputdir""$base".html
+}
+
+tex() {
+  printf "${blu}-->${nc} Compiling \"$base\".tex\n"
+  pandoc --toc --standalone "$file" -o "$outputdir""$base".tex
+}
+
+pdf() {
+  #TODO Set --defaults for PDF
+  printf "${blu}-->${nc} Compiling \"$base\".pdf\n"
+  pandoc --toc --pdf-engine=lualatex "$file" -o "$outputdir""$base".pdf
+}
+
+main() {
+  ## Mandatory
+  check_args "$@"
+  vars "$1"
+  check_dirs
+  #echo_vars # uncomment for debugging
+  clean
+  ## Optional outputs
+  ## Comment out any unneeded outputs
+  #docx
+  html
+  #tex
+  #pdf
+  printf "${grn}==>${nc} Compilation completed.\n"
+}
+
+#Pass all arguments into main function
+main "$@"
+
+
+
