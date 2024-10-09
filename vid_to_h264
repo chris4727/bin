@@ -40,6 +40,19 @@ convert_vid() {
     # 8-bit for max compatibility
   ffmpeg -v error -i "$input_file" -c:v libx264 -crf 20 -vf scale=-2:"$height",format=yuv420p -c:a copy ${filename}-h264.mp4
     #&
+
+  ## Get the PID of the ffmpeg process
+  #ffmpeg_pid=$!
+  #
+  ## ASCII animation loop
+  #while kill -0 $ffmpeg_pid 2>/dev/null; do
+  #  for s in '.' '..' '...'; do
+  #    echo -ne "\r$s"
+  #    sleep 1
+  #  done
+  #done
+  #
+  #wait $ffmpeg_pid
 }
 
 main() {
