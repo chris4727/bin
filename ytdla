@@ -1,0 +1,7 @@
+#!/usr/bin/sh
+# ==  YTDL AUDIO  ===============================
+# Downloads audio file
+
+
+yt-dlp -x --audio-format m4a --audio-quality 0 --embed-thumbnail -P $HOME/Music/ytdlp
+
