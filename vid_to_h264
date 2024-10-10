@@ -38,7 +38,7 @@ convert_vid() {
     # Compression. 0 Best quality, largest file
     # Sets pixel height keeping aspect ratio
     # 8-bit for max compatibility
-  ffmpeg -v error -i "$input_file" -c:v libx264 -crf 20 -vf scale=-2:"$height",format=yuv420p -c:a copy "${filename}-h264.mp4"
+  ffmpeg -v error -i "$input_file" -c:v libx264 -crf 20 -vf scale=-2:"$height",format=yuv420p -c:a copy "${filename}-${height}-h264.mp4"
     #&
 
   ## Get the PID of the ffmpeg process
@@ -61,6 +61,7 @@ main() {
   check_args "$@"
   convert_vid
   printf "${grn}==>${nc} Conversion completed.\n"
+  #TODO Print the amount of time the conversion took
 }
 
 main "$@"
