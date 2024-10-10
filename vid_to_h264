@@ -1,4 +1,4 @@
-#! /usr/bin/bash 
+#! /usr/bin/sh 
 # ==  CONVERT VID TO H264 ======================
 # Author: chris4727
 # Dependencies:
