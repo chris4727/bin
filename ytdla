@@ -50,7 +50,7 @@ get_audio() {
 main() {
   vars "$@"
   check_dep
-  echo_vars
+  #echo_vars
   check_args "$@"
   get_audio
   #TODO Print the amount of time the download took
