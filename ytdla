@@ -39,8 +39,8 @@ check_args() {
 }
 
 get_audio() {
-  printf "${blu}:: ${nc}Downloading ${prp}$input_file${nc} into $output_dir\n"
   yt-dlp -x --audio-format m4a --audio-quality 0 --embed-thumbnail -P $output_dir
+  printf "${blu}:: ${nc}Downloading ${prp}$input_url${nc} into $output_dir\n"
   # TODO Get file renamed using something like `-o "%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s"`
   # Match jellyfin music naming convention
   # https://github.com/yt-dlp/yt-dlp?tab=readme-ov-file#output-template-examples
