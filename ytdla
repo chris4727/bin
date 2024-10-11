@@ -1,12 +1,7 @@
 #!/usr/bin/sh
 # ==  YTDL AUDIO  ===============================
-# Downloads audio file
-
-
-
-#! /usr/bin/sh 
-# ==  CONVERT VID TO H264 ======================
 # Author: chris4727
+# Downloads audio file
 # Dependencies:
 # - yt-dlp
 
