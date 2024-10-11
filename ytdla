@@ -3,5 +3,63 @@
 # Downloads audio file
 
 
-yt-dlp -x --audio-format m4a --audio-quality 0 --embed-thumbnail -P $HOME/Music/ytdlp
+
+#! /usr/bin/sh 
+# ==  CONVERT VID TO H264 ======================
+# Author: chris4727
+# Dependencies:
+# - yt-dlp
+
+
+vars() {
+  input_url="$1"
+  output_dir="$HOME/Music/ytdlp"
+  filename=${1%%.*}
+  red="\033[0;31m"
+  blu="\033[0;34m"
+  grn="\033[0;32m"
+  prp="\033[0;35m"
+  nc="\033[0m" # No Color
+}
+
+check_dep() {
+  if ! command -v "yt-dlp" &> /dev/null
+  then
+    echo "Error: yt-dlp is not installed." >&2
+    printf "${red}Error:${nc} yt-dlp is not installed.\n"
+    exit 1
+  fi
+}
+
+echo_vars() {
+  printf "$input_file\n"
+  printf "$filename\n"
+  printf "$height\n"
+}
+
+check_args() {
+  if [ $# -ne 1 ]; then
+    printf "${red}Error:${nc} This script expects one argument, <input-url>.\n"
+    printf "${grn}Usage:${nc} 'ytdla <url.com>'\n"
+    exit 1
+  fi
+}
+
+get_audio() {
+  printf "${blu}:: ${nc}Downloading ${prp}$input_file${nc} into $output_dir\n"
+  yt-dlp -x --audio-format m4a --audio-quality 0 --embed-thumbnail -P $output_dir
+  printf "${grn}==>${nc} Download completed.\n"
+}
+
+main() {
+  vars "$@"
+  check_dep
+  echo_vars
+  check_args "$@"
+  get_audio
+  #TODO Print the amount of time the download took
+}
+
+main "$@"
+
 
