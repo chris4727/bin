@@ -9,7 +9,6 @@
 vars() {
   input_url="$1"
   output_dir="$HOME/Music/ytdlp"
-  filename=${1%%.*}
   red="\033[0;31m"
   blu="\033[0;34m"
   grn="\033[0;32m"
