@@ -26,9 +26,8 @@ check_dep() {
 }
 
 echo_vars() {
-  printf "$input_file\n"
-  printf "$filename\n"
-  printf "$height\n"
+  printf "$input_url\n"
+  printf "$output_dir\n"
 }
 
 check_args() {
