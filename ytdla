@@ -32,8 +32,8 @@ echo_vars() {
 
 check_args() {
   if [ $# -ne 1 ]; then
-    printf "${red}Error:${nc} This script expects one argument, <input-url>.\n"
-    printf "${grn}Usage:${nc} 'ytdla <url.com>'\n"
+    printf "${red}Error:${nc} This script expects one argument <input-url>\n"
+    printf "${grn}Usage:${nc} ytdla <url.com>\n"
     exit 1
   fi
 }
