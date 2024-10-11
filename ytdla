@@ -40,7 +40,6 @@ check_args() {
 get_audio() {
   printf "${blu}:: ${nc}Downloading ${prp}$input_url${nc} into $output_dir\n"
   yt-dlp -x "$input_url" --audio-format m4a --audio-quality 0 -o "%(title)s/%(title)s.%(ext)s" --write-thumbnail --convert-thumbnails jpg -P "$output_dir"
-  # TODO Get file renamed using something like `-o "%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s"`
   # Match jellyfin music naming convention
   # https://github.com/yt-dlp/yt-dlp?tab=readme-ov-file#output-template-examples
   printf "${grn}==>${nc} Download completed.\n"
@@ -52,7 +51,6 @@ main() {
   #echo_vars
   check_args "$@"
   get_audio
-  #TODO Print the amount of time the download took
 }
 
 main "$@"
