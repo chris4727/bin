@@ -20,7 +20,6 @@ vars() {
 check_dep() {
   if ! command -v "yt-dlp" &> /dev/null
   then
-    echo "Error: yt-dlp is not installed." >&2
     printf "${red}Error:${nc} yt-dlp is not installed.\n"
     exit 1
   fi
