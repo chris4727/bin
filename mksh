@@ -3,5 +3,8 @@
 
 touch "$1"
 chmod +x "$1"
-printf "#!/usr/bin/sh\n\n" >> "$1"
+printf "#!/usr/bin/sh\n" >> "$1"
+printf "# ==  $1  ======================\n" >> "$1"
+printf "# Author: chris4727\n" >> "$1"
+printf "# Dependencies:\n\n" >> "$1"
 vim "$1"
