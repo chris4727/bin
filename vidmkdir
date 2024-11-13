@@ -1,0 +1,48 @@
+#! /usr/bin/bash 
+# == VID MKDIR ==================================
+# Author: Chris Pyke
+#  Takes a directory of video files and moves 
+#  them into a directory of the same name.
+# ===============================================
+#
+# NOTE: Filenames should be in the Jellyfin format:
+#       'File Name (YYYY) [tmdbid-XXXX].ext'
+
+# Define color variables
+#    Black        0;30     Dark Gray     1;30
+#    Red          0;31     Light Red     1;31
+#    Green        0;32     Light Green   1;32
+#    Brown/Orange 0;33     Yellow        1;33
+#    Blue         0;34     Light Blue    1;34
+#    Purple       0;35     Light Purple  1;35
+#    Cyan         0;36     Light Cyan    1;36
+#    Light Gray   0;37     White         1;37
+blue='\033[0;34m'
+blueb='\033[1;34m'
+green='\033[0;32m'
+greenb='\033[1;32m'
+purple='\033[0;35m'
+purpleb='\033[1;35m'
+ncb='\033[1m'
+nc='\033[0m' # No Color
+
+printf "${blue}:: ${nc}${fgb}Filing videos in current directory${nc}\n"
+# Creates variable $f for all items with listed extensions.
+for f in *.{mp4,mkv}; do
+  [[ -f "$f" ]] || continue # skip if not regular file
+  # % matches last occurance of '.*'
+  dir="${f%.*}"
+
+  printf "${green}==> ${nc}Filing ${purple}'$f'${nc}\n"
+  # Make directories with $dir as the name:
+  printf "${blue}  ->${nc} Making directory ${blue}'$dir'${nc}\n"
+  mkdir "$dir"
+  # Move videos into the appropriate directory:
+  printf "${blue}  ->${nc} Moving into directory\n"
+  mv "$f" "$dir"
+  printf "${blue}  ->${nc} Moved '$f' into '$dir'\n"
+done
+
+printf "${blue}:: ${nc}${fgb}Completed filing{$nc}\n"
+
+
