@@ -1,10 +1,38 @@
 #!/usr/bin/sh
 # ==  MKSH  ======================================
+# Description: Create a new shell script from template 
+# Author: chris4727
 
-touch "$1"
-chmod +x "$1"
-printf "#!/usr/bin/sh\n" >> "$1"
-printf "# ==  $1  ======================\n" >> "$1"
-printf "# Author: chris4727\n" >> "$1"
-printf "# Dependencies:\n\n" >> "$1"
-vim "$1"
+main() {
+  vars
+  check_args "$@"
+  mksh "$1"
+}
+
+vars() {
+  red="\033[0;31m"
+  grn="\033[0;32m"
+  nc="\033[0m" # No Color
+}
+
+
+check_args() {
+  if [ $# -ne 1 ]; then
+    printf "${red}Error:${nc} This script expects one argument <script_name>\n"
+    printf "${grn}Usage:${nc} mksh <script_name>\n"
+    exit 1
+  fi
+}
+
+mksh() {
+  touch "$1"
+  chmod +x "$1"
+  printf "#!/usr/bin/sh\n" >> "$1"
+  printf "# ==  $1  ======================================\n" >> "$1"
+  printf "# Description: \n" >> "$1"
+  printf "# Author: chris4727\n" >> "$1"
+  printf "# Dependancies: \n\n" >> "$1"
+  $EDITOR "$1"
+}
+
+main "$@"
