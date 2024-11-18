@@ -1,0 +1,7 @@
+#!/usr/bin/sh
+# ==  RSYNC MUSIC  ======================
+# Uses rsync to archive music
+# Author: chris4727
+# Dependencies:
+# - rsync
+#
