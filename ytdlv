@@ -1,0 +1,58 @@
+#!/usr/bin/bash
+# ==  YTDL VIDEO  ===============================
+# Author: chris4727
+# Downloads video file
+# Dependencies:
+# - yt-dlp
+
+vars() {
+  input_url="$1"
+  output_dir="$HOME/Videos/ytdlp"
+  red="\033[0;31m"
+  blu="\033[0;34m"
+  grn="\033[0;32m"
+  prp="\033[0;35m"
+  nc="\033[0m" # No Color
+}
+
+check_dep() {
+  if ! command -v "yt-dlp" &> /dev/null
+  then
+    printf "${red}Error:${nc} yt-dlp is not installed.\n"
+    exit 1
+  fi
+}
+
+echo_vars() {
+  printf "$input_url\n"
+  printf "$output_dir\n"
+}
+
+check_args() {
+  if [ $# -ne 1 ]; then
+    printf "${red}Error:${nc} This script expects one argument <input-url>\n"
+    printf "${grn}Usage:${nc} ytdlv <url.com>\n"
+    exit 1
+  fi
+}
+
+get_video() {
+  printf "${blu}:: ${nc}Downloading ${prp}$input_url${nc} into $output_dir\n"
+  # Add `--simulate` to do a dry run without downloading for testing.
+  yt-dlp "$input_url" --format mp4 --audio-format m4a --audio-quality 0 -o "s%(title)s.%(ext)s" -P "$output_dir" | grep --color=auto --line-buffered "\[download\]" | sed "s/\[download\] /:: /g"
+  # Match jellyfin music naming convention
+  # https://github.com/yt-dlp/yt-dlp?tab=readme-ov-file#output-template-examples
+  printf "${grn}==>${nc} Download completed.\n"
+}
+
+main() {
+  vars "$@"
+  check_dep
+  #echo_vars
+  check_args "$@"
+  get_video
+}
+
+main "$@"
+
+
