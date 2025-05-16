@@ -1,9 +1,29 @@
 #!/usr/bin/sh
-# ==  backup_dir  ======================================
+# ==  BACKUP DIRECTORY  ======================================
 # Description: 
 #   Creates a backup of the specified directory to a specified location
 # Author: chris4727
 # Dependancies:
 #   rsync
 
+vars() {
+# TODO create backup_dir variable for the directory to be backed up created from user input arg 1
+#      The script will create a directory named "YYYYMMDD-$source_dir-backup" within the backup_dir.
+# TODO create source_dir variable for the directory to copy the backup to from user input arg 2
+}
 
+check_dirs() {
+# TODO check if backup_dir and source_dir exist
+}
+
+backup() {
+# TODO Create rsync command to backup the backup_dir to source_dir
+}
+
+main() {
+  vars
+  check_dirs
+  backup
+}
+
+main
