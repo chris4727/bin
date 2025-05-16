@@ -1,8 +1,15 @@
 #!/usr/bin/sh
 # == MONTHLY BACKUP =============================
 
-# create variables
-BACKUP_DIR=$HOME/.local/backup/monthly
+vars() {
+  backup_dir=$HOME/.local/backup/monthly
+}
+
+check_dirs() {
+  if [ ! -d "$BACKUP_DIR" ]; then
+    mkdir -p "$BACKUP_DIR"
+  fi
+}
 
 # TODO create variable for the directory to be backed up
 # The following tar command will create a compressed archive of the ~/.config/ directory in the ~/.local/backup/weekly/ directory. 
