@@ -39,7 +39,8 @@ check_args() {
 get_audio() {
   printf "${blu}:: ${nc}Downloading ${prp}$input_url${nc} into $output_dir\n"
   # Add `--simulate` to do a dry run without downloading for testing.
-  yt-dlp -x "$input_url" --audio-format m4a --audio-quality 0 -o "%(playlist)s/%(playlist_index&{} - |)s%(title)s.%(ext)s" --no-write-thumbnail -P "$output_dir" | grep --color=auto --line-buffered "\[download\]" | sed "s/\[download\] /:: /g"
+  yt-dlp -x "$input_url" --audio-format m4a --audio-quality 0 -o "%(title)s.%(ext)s" -P "$output_dir" | grep --color=auto --line-buffered "\[download\]" | sed "s/\[download\] /:: /g"
+  #yt-dlp -x "$input_url" --audio-format m4a --audio-quality 0 -o "%(playlist)s/%(playlist_index&{} - |)s%(title)s.%(ext)s" --no-write-thumbnail -P "$output_dir" | grep --color=auto --line-buffered "\[download\]" | sed "s/\[download\] /:: /g"
   # Match jellyfin music naming convention
   # https://github.com/yt-dlp/yt-dlp?tab=readme-ov-file#output-template-examples
   printf "${grn}==>${nc} Download completed.\n"
