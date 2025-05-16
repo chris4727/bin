@@ -1,4 +1,10 @@
 #!/usr/bin/sh
 # == MONTHLY BACKUP =============================
 
-
+# TODO create variable for the backup storage directory
+# TODO create variable for the directory to be backed up
+# The following tar command will create a compressed archive of the ~/.config/ directory in the ~/.local/backup/weekly/ directory. 
+# TODO Check if backup directory exists, if not, create it.
+tar -zcf $HOME/.local/backup/monthly/$(date +%Y%m%d)-backup.tar.gz $HOME/.config/
+# The find command will remove all montly backups that are older than 365 days or 1 year.
+find $HOME/.local/backup/monthly/* -mtime +365 -delete
