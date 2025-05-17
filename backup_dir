@@ -7,23 +7,39 @@
 #   rsync
 
 vars() {
-# TODO create backup_dir variable for the directory to be backed up created from user input arg 1
-#      The script will create a directory named "YYYYMMDD-$source_dir-backup" within the backup_dir.
-# TODO create source_dir variable for the directory to copy the backup to from user input arg 2
+# Create backup_dir variable for the directory to be backed up from user input arg 1
+  backup_dir=$1
+# Create source_dir variable for the directory to copy the backup from user input arg 2
+  source_dir=$2
+# Create backup directory name with date
+  backup_name=$(date +"%Y%m%d")-"$source_dir"-backup
+# Create full path for backup directory
+  full_backup_dir=$backup_dir/$backup_name
 }
 
-check_dirs() {
-# TODO check if backup_dir and source_dir exist
+echo_vars() {
+  echo backup_dir $backup_dir
+# Create source_dir variable for the directory to copy the backup from user input arg 2
+  echo source_dir $source_dir
+# Create backup directory name with date
+  echo backup_name $backup_name
+# Create full path for backup directory
+  echo full_backup_dir $full_backup_dir
 }
+
+#check_dirs() {
+## TODO check if backup_dir and source_dir exist
+#}
 
 backup() {
-# TODO Create rsync command to backup the backup_dir to source_dir
+   rsync -rvhaP --progress "$source_dir" "$full_backup_dir"
 }
 
 main() {
-  vars
-  check_dirs
-  backup
+  vars "$@"
+  echo_vars
+  #check_dirs
+  #backup
 }
 
 main
