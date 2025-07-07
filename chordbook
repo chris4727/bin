@@ -1,0 +1,8 @@
+#!/usr/bin/sh
+# ==  CHORDBOOK  ======================================
+# Description: 
+#    Creates a PDF lead sheet from ChordPro source file
+# Author: chris4727
+# Dependancies:
+#   - ChordPro
+
