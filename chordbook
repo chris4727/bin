@@ -6,3 +6,41 @@
 # Dependancies:
 #   - ChordPro
 
+vars() {
+  input_file="$1"
+  filename=${1%%.*}
+  red="\033[0;31m"
+  blu="\033[0;34m"
+  grn="\033[0;32m"
+  prp="\033[0;35m"
+  nc="\033[0m" # No Color
+}
+
+echo_vars() {
+  printf "$input_file\n"
+  printf "$filename\n"
+}
+
+check_args() {
+  if [ $# -ne 1 ]; then
+    printf "${red}Error:${nc} This script expects one file as anargument.\n"
+    printf "${grn}Usage:${nc} 'chordbook input.cho'\n"
+    exit 1
+  fi
+}
+
+createpdf() {
+  chordpro --config="$HOME"/dotfiles/chordpro/.config/chordpro/default.json "$input_file" -o "$filename".pdf
+}
+
+main() {
+  vars "$@"
+  #echo_vars
+  check_args "$@"
+  printf "${blu}-->${nc} Creating pdf from ${prp}$input_file${nc}\n"
+  createpdf
+  printf "${grn}==>${nc} Created ${grn}$filename.pdf${nc}\n"
+}
+
+main "$@"
+
