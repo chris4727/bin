@@ -3,6 +3,8 @@
 
 vars() {
   backup_dir=$HOME/.local/backup/monthly
+# TODO create variable for the directory to be backed up created from
+# user input
 }
 
 check_dirs() {
@@ -11,9 +13,10 @@ check_dirs() {
   fi
 }
 
-# TODO create variable for the directory to be backed up
+backup() {
 # The following tar command will create a compressed archive of the ~/.config/ directory in the ~/.local/backup/weekly/ directory. 
-# TODO Check if backup directory exists, if not, create it.
-tar -zcf $HOME/.local/backup/monthly/$(date +%Y%m%d)-backup.tar.gz $HOME/.config/
+  tar -zcf $HOME/.local/backup/monthly/$(date +%Y%m%d)-backup.tar.gz $HOME/.config/
+# TODO Create rsync command to backup the backup_dir to source_dir
 # The find command will remove all montly backups that are older than 365 days or 1 year.
-find $HOME/.local/backup/monthly/* -mtime +365 -delete
+  find $HOME/.local/backup/monthly/* -mtime +365 -delete
+}
