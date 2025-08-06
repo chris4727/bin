@@ -30,6 +30,7 @@ check_args() {
 }
 
 createpdf() {
+  printf "${blu}-->${nc} Creating pdf from ${prp}$input_file${nc}\n"
   chordpro --config="$HOME"/.config/chordpro/default.json --diagrams=user "$input_file" -o ./output/"$filename".pdf
   # specifies default.json config filename
   # Only prints user defined chord diagrams
@@ -46,7 +47,6 @@ main() {
   vars "$@"
   #echo_vars
   check_args "$@"
-  printf "${blu}-->${nc} Creating pdf from ${prp}$input_file${nc}\n"
   createpdf
   printf "${grn}==>${nc} Created ${grn}$filename.pdf${nc}\n"
 }
