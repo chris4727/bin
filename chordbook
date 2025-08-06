@@ -30,7 +30,6 @@ check_args() {
 }
 
 createpdf() {
-  chordpro --config="$HOME"/dotfiles/chordpro/.config/chordpro/default.json "$input_file" -o "$filename".pdf
   chordpro --config="$HOME"/.config/chordpro/default.json --diagrams=user "$input_file" -o ./output/"$filename".pdf
   # specifies default.json config filename
   # Only prints user defined chord diagrams
