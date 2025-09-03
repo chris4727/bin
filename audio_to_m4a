@@ -1,0 +1,48 @@
+#!/usr/bin/sh
+# ==  Audio to m4a  ======================================
+# Description:
+# - Creates a copy of all audio files in a directory and converts them to m4a
+# Author: chris4727
+# Dependancies: 
+# - ffmpeg
+
+vars() {
+  red="\033[0;31m"
+  blu="\033[0;34m"
+  grn="\033[0;32m"
+  prp="\033[0;35m"
+  nc="\033[0m"
+}
+
+check_dependencies() {
+  if ! command -v "ffmpeg" &> /dev/null
+  then
+    printf "${red}Error:${nc} ffmpeg is not installed\n"
+    exit 1
+  fi
+}
+
+echo_vars() {
+  # For debugging
+}
+
+check_args() {
+  if [ "$#" -ne 1 ]; then
+    printf "${red}Error:${nc} This script expects one argument\n"
+    printf "${grn}Usage:${nc} audio_to_m4a <directory>\n"
+    exit 1
+  fi
+}
+
+convert_to_m4a() {
+  ffmpeg
+}
+
+main() {
+  check_dependencies
+  echo_vars
+  check_args
+  #convert_to_m4a
+}
+
+main "$@"
