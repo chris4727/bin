@@ -7,7 +7,12 @@
 
 vars() {
   input_url="$1"
-  output_dir="$HOME/Music/ytdlp"
+  # Set output directory to arg 2, or default to $HOME/music/ytdlp
+  if [ $# -ge 2 ]; then
+      output_dir=$2
+  else
+      output_dir="$HOME/music/ytdlp"
+  fi
   red="\033[0;31m"
   blu="\033[0;34m"
   grn="\033[0;32m"
@@ -29,9 +34,9 @@ echo_vars() {
 }
 
 check_args() {
-  if [ $# -ne 1 ]; then
-    printf "${red}Error:${nc} This script expects one argument <input-url>\n"
-    printf "${grn}Usage:${nc} ytdla <url.com>\n"
+  if [ $# -lt 1 ]; then
+    printf "${red}Error:${nc} This script expects at least one argument <input-url>\n"
+    printf "${grn}Usage:${nc} ytdla <url.com> <optional-output-dir)>\n"
     exit 1
   fi
 }
