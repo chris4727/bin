@@ -43,11 +43,26 @@ createpdf() {
   # --filelist=FILE       # Specify txt file with list of input files
 }
 
+createpdfdecapo() {
+  printf "${blu}-->${nc} Creating pdf from ${prp}$input_file${nc}\n"
+  chordpro --config="$HOME"/.config/chordpro/default.json --diagrams=user --decapo "$input_file" -o ./output/"$filename"-decapo.pdf
+  # specifies default.json config filename
+  # Only prints user defined chord diagrams
+  # Takes specified input file and outputs to pdf of the same name
+  # Other options:
+  # See https://www.chordpro.org/chordpro/using-chordpro/#diagrams
+  # --transcode=nashville # Transcode to Nashville number chords
+  # --transpose=+2        # Transpose up 2 semitones (- for down)
+  # --decapo              # Remove capo and transpose chords
+  # --filelist=FILE       # Specify txt file with list of input files
+}
+
 main() {
   vars "$@"
   #echo_vars
   check_args "$@"
   createpdf
+  createpdfdecapo
   printf "${grn}==>${nc} Created ${grn}$filename.pdf${nc}\n"
 }
 
