@@ -60,6 +60,7 @@ get_book() {
   wget "$input_url" -O "$output_dir$filename"
   if [ $? -ne 0 ]; then
     printf "${red}Error:${nc} Download failed.\n"
+    rm "$output_dir$filename" # Clean up empty file
     exit 1
   else
     printf "${grn}==>${nc} Download completed.\n"
