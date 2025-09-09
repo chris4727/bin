@@ -1,9 +1,13 @@
 #!/usr/bin/bash
 # ==  GET BOOK  ===============================
 # Author: chris4727
-# Downloads ebook and adds to Calibre library
+# Downloads epub ebook and adds to Calibre library
 # Dependencies:
 # - calibredb
+# Usage:
+# get_book <url.com>
+# For example, on Project Gutenberg, find the link to the epub, right
+# click and copy link address.
 
 vars() {
   input_url="$1"
