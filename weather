@@ -1,0 +1,53 @@
+#!/usr/bin/sh
+# ==  weather  ======================================
+# Description:
+#   Gets the weather for the current location, or accepts optional arguments
+#   for the location
+# Author: chris4727
+# Dependancies:
+# - curl
+
+vars() {
+  red="\033[0;31m"
+  yel="\033[0;33m"
+  grn="\033[0;32m"
+  blu="\033[0;34m"
+  prp="\033[0;35m"
+  nc="\033[0m"
+}
+
+check_dependencies() {
+  if ! command -v "printf" &> /dev/null
+  then
+    printf "${red}Error:${nc} printf is not installed\n"
+    exit 1
+  fi
+}
+
+echo_vars() {
+  echo "$1"
+}
+
+check_args() {
+  if [ "$#" -gt 1 ]; then
+    printf "${red}Error:${nc} This script expects no more than one argument\n"
+    printf "${grn}Usage:${nc} weather <optional_location>\n"
+    exit 1
+  fi
+}
+
+get_weather() {
+  # Get weather at specified location. Remove last line from output
+  curl -s v2.wttr.in/"$1" | sed '$d'
+}
+
+main() {
+  vars "$1"
+  #check_dependencies
+  #echo_vars
+  check_args
+  get_weather "$1"
+}
+
+main "$@"
+
