@@ -3,16 +3,11 @@
 # Description: Create a new shell script from template 
 # Author: chris4727
 
-main() {
-  vars
-  check_args "$@"
-  mksh "$1"
-}
-
 vars() {
   red="\033[0;31m"
   grn="\033[0;32m"
   nc="\033[0m" # No Color
+  template="$HOME/.local/bin/TEMPLATE.sh"
 }
 
 
@@ -32,7 +27,15 @@ mksh() {
   printf "# Description: \n" >> "$1"
   printf "# Author: chris4727\n" >> "$1"
   printf "# Dependancies: \n\n" >> "$1"
+  cat "$template" >> "$1"
   $EDITOR "$1"
 }
 
+main() {
+  vars
+  check_args "$@"
+  mksh "$1"
+}
+
 main "$@"
+
