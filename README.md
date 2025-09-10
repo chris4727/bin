@@ -1,5 +1,7 @@
 # bin
 
+These scripts come with no warrantee. In other words, I can't promise they all work, so test them before you use them!
+
 Local binaries and scripts for simple tools.
 
 Name using heirarchical naming, all lowercase, underscore separator. Ex. `photo_rename`, `video_to_h264`.
