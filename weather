@@ -45,7 +45,7 @@ main() {
   vars "$1"
   #check_dependencies
   #echo_vars
-  check_args
+  check_args "$@"
   get_weather "$1"
 }
 
