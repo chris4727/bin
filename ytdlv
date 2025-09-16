@@ -1,0 +1,67 @@
+#!/usr/bin/bash
+# ==  YTDL AUDIO  ===============================
+# Author: chris4727
+# Downloads audio file
+# Dependencies:
+# - yt-dlp
+
+vars() {
+  input_url="$1"
+  # Set output directory to arg 2, or default to $HOME/music/ytdlp
+  if [ $# -ge 2 ]; then
+      output_dir=$2
+  else
+      output_dir="$HOME/Videos/unsorted/"
+  fi
+  red="\033[0;31m"
+  blu="\033[0;34m"
+  grn="\033[0;32m"
+  prp="\033[0;35m"
+  nc="\033[0m" # No Color
+}
+
+check_dep() {
+  if ! command -v "yt-dlp" &> /dev/null
+  then
+    printf "${red}Error:${nc} yt-dlp is not installed.\n"
+    exit 1
+  fi
+}
+
+echo_vars() {
+  printf "$input_url\n"
+  printf "$output_dir\n"
+}
+
+check_args() {
+  if [ $# -lt 1 ]; then
+    printf "${red}Error:${nc} This script expects at least one argument <input-url>\n"
+    printf "${grn}Usage:${nc} ytdlv <url.com> <optional-output-dir)>\n"
+    exit 1
+  fi
+}
+
+get_video() {
+  # Add `--simulate` to do a dry run without downloading for testing.
+  # Get video
+  printf "${blu}:: ${nc}Downloading ${prp}$input_url${nc} into $output_dir\n"
+  yt-dlp "$input_url" -f "best[height=480]" -t "mp4" -o "%(title)s.%(ext)s" -P "$output_dir" | grep --color=auto --line-buffered "\[download\]" | sed "s/\[download\] /:: /g"
+  # Get thumbnail
+  printf "${blu}:: ${nc}Downloading thumbnail into $output_dir\n" | grep --color=auto --line-buffered "\[download\]" | sed "s/\[download\] /:: /g"
+  #yt-dlp --write-thumbnail -o "%(title)s_%(id)s.jpg" "$input_url"
+  # Match jellyfin music naming convention
+  # https://github.com/yt-dlp/yt-dlp?tab=readme-ov-file#output-template-examples
+  printf "${grn}==>${nc} Download completed.\n"
+}
+
+main() {
+  vars "$@"
+  check_dep
+  #echo_vars
+  check_args "$@"
+  get_video
+}
+
+main "$@"
+
+
