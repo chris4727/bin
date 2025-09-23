@@ -16,7 +16,7 @@ check_dependencies() {
 }
 
 run_astroterm() {
-  astroterm --color --constellations --speed 100 --fps 8 --city Seattle
+  astroterm --color --unicode --speed 100 --fps 8 --city Seattle
 }
 
 main() {
