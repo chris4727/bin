@@ -1,0 +1,14 @@
+#!/usr/bin/sh
+# ==  FPAC  ======================================
+# Description: Search the pacman repo and install packages with fzf
+# Author: chris4727
+# Dependancies: 
+# - fzf
+# - pacman
+
+fpac() {
+sudo pacman -S $(pacman -Ssq | fzf --preview="pacman -Si {}" --header="Select packages to install with Tab, then press Enter." --border-label=" PACMAN INSTALL " --preview-label=" PACKAGE INFO " --tmux 70%)
+}
+
+fpac
+
