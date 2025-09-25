@@ -1,0 +1,58 @@
+#!/bin/sh
+#==  PRINT 16 COLOR CODES ===========================================
+
+# NORMAL
+# Display numbers 30--38 with the associated escape sequence
+# \e[<30-38>m<String to print>
+for i in $(seq 30 39); do
+	printf "\e[${i}m ${i}  \e[0m"
+done
+printf "\n" 
+
+# BOLD
+for i in $(seq 30 39); do
+	printf "\e[1;${i}m 1;${i}\e[0m"
+done
+printf "\n" 
+
+# BRIGHT
+for i in $(seq 90 99); do
+	printf "\e[${i}m ${i}  \e[0m"
+done
+printf "\n" 
+
+# NORMAL BACKGROUND
+for i in $(seq 40 49); do
+	printf "\e[39;${i}m ${i}  \e[0m"
+done
+printf "\n" 
+
+# BRIGHT BACKGROUND
+# \e[1;<30-38>m<String to print>
+for i in $(seq 100 109); do
+	printf "\e[39;${i}m ${i} \e[0m"
+done
+printf "\e[0m\n" 
+
+# DISPLAY MODES
+for i in $(seq 1 9); do
+	printf "\e[39;${i}m ds${i} \e[0m"
+  printf "\e[0m" 
+done
+
+# ESC Code Sequence 	Reset Sequence 	Description
+# ESC[1;34;{...}m 		Set graphics modes for cell, separated by semicolon (;).
+# ESC[0m 		reset all modes (styles and colors)
+# ESC[1m 	ESC[22m 	set bold mode.
+# ESC[2m 	ESC[22m 	set dim/faint mode.
+# ESC[3m 	ESC[23m 	set italic mode.
+# ESC[4m 	ESC[24m 	set underline mode.
+# ESC[5m 	ESC[25m 	set blinking mode
+# ESC[7m 	ESC[27m 	set inverse/reverse mode
+# ESC[8m 	ESC[28m 	set hidden/invisible mode
+# ESC[9m 	ESC[29m 	set strikethrough mode.
+
+# Set no color and create new line
+printf "\e[0m\n" 
+
+
