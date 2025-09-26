@@ -6,9 +6,65 @@
 # - fzf
 # - pacman
 
-fpac() {
-sudo pacman -S $(pacman -Ssq | fzf --preview="pacman -Si {}" --header="Select packages to install with Tab, then press Enter." --border-label=" PACMAN INSTALL " --preview-label=" PACKAGE INFO " --tmux 70%)
+vars() {
+  argument="$1"
+  red="\033[0;31m"
+  yel="\033[0;33m"
+  grn="\033[0;32m"
+  blu="\033[0;34m"
+  prp="\033[0;35m"
+  nc="\033[0m"
 }
 
-fpac
+check_dependencies() {
+  if ! command -v "fzf" &> /dev/null
+  then
+    printf "${red}Error:${nc} fzf is not installed\n"
+    printf "${blu}::${nc} Install with manually then try again\n"
+    printf "${grn}Hint:${nc} ${prp}sudo pacman -S fzf${nc}\n"
+    exit 1
+  fi
+  if ! command -v "pacman" &> /dev/null
+  then
+    printf "${red}Error:${nc} pacman is not installed\n"
+    printf "${blu}::${nc} Are you running ${blu}Arch${nc} btw?\n"
+    exit 1
+  fi
+}
+
+check_args() {
+  if [ "$#" -ne 0 ]; then
+    printf "${red}Error:${nc} This script does not accept arguments\n"
+    printf "${grn}Usage:${nc} fpac\n"
+    exit 1
+  fi
+}
+
+select_packages() {
+  selected_packages=$(pacman -Ssq | fzf --preview="pacman -Si {}" --header="Select packages to install with Tab, then press Enter." --border-label=" PACMAN INSTALL " --preview-label=" PACKAGE INFO " --tmux 70%)
+}
+
+check_selected() {
+  if [ -z "$selected_packages" ]; then
+    printf "${yel}::${nc} No packages selected.\n"
+    exit 0
+  else
+    install_packages
+  fi
+}
+
+install_packages() {
+  sudo pacman -S $selected_packages &&
+  printf "${blu}::${nc} Thanks for using ${blu}Arch${nc} btw...\n"
+}
+
+main() {
+  vars "$@"
+  check_dependencies
+  check_args "$@"
+  select_packages
+  check_selected
+}
+
+main "$@"
 
