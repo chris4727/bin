@@ -24,7 +24,7 @@ check_dependencies() {
 check_args() {
   if [ "$#" -ne 0 ]; then
     printf "${red}Error:${nc} This script expects no arguments\n"
-    printf "${grn}Usage:${nc} TEMPLATE.sh <argument>\n"
+    printf "${grn}Usage:${nc} TEMPLATE.sh ${prp}<argument>${nc}\n"
     exit 1
   fi
 }
