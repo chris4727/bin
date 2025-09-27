@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/usr/bin/bash
 # ==  FPAC  ======================================
 # Description: Search the pacman repo and install packages with fzf
 # Author: chris4727
@@ -7,7 +7,6 @@
 # - pacman
 
 vars() {
-  argument="$1"
   red="\033[0;31m"
   yel="\033[0;33m"
   grn="\033[0;32m"
@@ -54,7 +53,7 @@ check_selected() {
 }
 
 install_packages() {
-  sudo pacman -S $selected_packages &&
+  sudo pacman -S "$selected_packages" &&
   printf "${blu}::${nc} Thanks for using ${blu}Arch${nc} btw...\n"
 }
 
