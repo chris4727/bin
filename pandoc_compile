@@ -18,6 +18,14 @@ check_args() {
   fi
 }
 
+check_dependencies() {
+  if ! command -v "pandoc" &> /dev/null
+  then
+    printf "${red}Error:${nc} pandoc is not installed\n"
+    exit 1
+  fi
+}
+
 vars() {
   # Reads in file, defines $base as the filename minus the extension
   file="$1"
@@ -93,6 +101,7 @@ pdf() {
 
 main() {
   check_args "$@"
+  check_dependencies
   vars "$1"
   check_dirs
   #echo_vars # uncomment for debugging
