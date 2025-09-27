@@ -2,7 +2,6 @@
 # ==  PANDOC DOCUMENT COMPILE  ==================
 # Author: chris4727
 # Compiles markdown document into multiple formats
-#
 # Dependencies:
 # - Pandoc
 # TODO Check that Pandoc is in the path
@@ -23,6 +22,7 @@ vars() {
   # Reads in file, defines $base as the filename minus the extension
   file="$1"
   base="${file%.md}"
+  #TODO Check if outputdir exists, mkdir if not
   outputdir="./output/"
   # TODO Move $templatedir to pandoc data dir as returned with `pandoc -v | grep "User data directory:"`
   templatedir="./templates/"
@@ -55,10 +55,12 @@ echo_vars() {
   echo outputdir "$outputdir"
   echo outputdirbase"$outputdir""$base"
   echo templatedir "$templatedir"
+  echo template "$docx"
 }
 
-#TODO Check if files exist, and remove if they are
 # ---  CLEAN  ------------------------------------
+#TODO Prompt user if they would like to auto clear outputdir
+#     Exit if no
 clean() {
   printf "${red}:: ${nc} Removing existing files in $outputdir\n"
   rm -f "$outputdir""$base"*
@@ -87,15 +89,16 @@ pdf() {
   pandoc --toc --pdf-engine=lualatex "$file" -o "$outputdir""$base".pdf
 }
 
+#TODO Case statement to select output formats
+
 main() {
-  ## Mandatory
   check_args "$@"
   vars "$1"
   check_dirs
   #echo_vars # uncomment for debugging
   clean
   ## Optional outputs
-  ## Comment out any unneeded outputs
+  ## Uncomment any unneeded outputs
   #docx
   html
   #tex
@@ -105,6 +108,5 @@ main() {
 
 #Pass all arguments into main function
 main "$@"
-
 
 
