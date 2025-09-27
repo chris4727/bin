@@ -7,25 +7,6 @@
 # TODO Check that Pandoc is in the path
 # NOTE This script will remove anything in the ./output/ directory.
 
-check_args() {
-# Exit and print error if the number of args does not equal 1
-# TODO Check that one file with .md extension is provided
-# TODO Allow input of a defaults.ymd file instead of a markdown file
-  if [[ $# != 1 ]]; then
-    printf "${red}Error:${nc} Please specify Markdown file to compile.\n"
-    printf "${grn}Usage:${nc} 'rulecompile inputfile.md'\n"
-    exit 1
-  fi
-}
-
-check_dependencies() {
-  if ! command -v "pandoc" &> /dev/null
-  then
-    printf "${red}Error:${nc} pandoc is not installed\n"
-    exit 1
-  fi
-}
-
 vars() {
   # Reads in file, defines $base as the filename minus the extension
   file="$1"
@@ -44,6 +25,35 @@ vars() {
   docx_template="$templatedir"template.docx
 }
 
+echo_vars() {
+  # For testing
+  echo file "$file"
+  echo base "$base"
+  echo outputdir "$outputdir"
+  echo outputdirbase"$outputdir""$base"
+  echo templatedir "$templatedir"
+  echo template "$docx"
+}
+
+check_args() {
+# Exit and print error if the number of args does not equal 1
+# TODO Check that one file with .md extension is provided
+# TODO Allow input of a defaults.ymd file instead of a markdown file
+  if [[ $# != 1 ]]; then
+    printf "${red}Error:${nc} Please specify Markdown file to compile.\n"
+    printf "${grn}Usage:${nc} 'rulecompile inputfile.md'\n"
+    exit 1
+  fi
+}
+
+check_dependencies() {
+  if ! command -v "pandoc" &> /dev/null
+  then
+    printf "${red}Error:${nc} ${prp}pandoc${nc} is not installed\n"
+    exit 1
+  fi
+}
+
 check_dirs() {
   printf "${yel}==>${nc} Preparing compilation of $file\n"
   if [ ! -d "$outputdir" ]; then
@@ -54,16 +64,6 @@ check_dirs() {
     mkdir "$templatedir"
     printf "${blu} ->${nc} Creating  $templatedir\n"
   fi
-}
-
-echo_vars() {
-  # For testing
-  echo file "$file"
-  echo base "$base"
-  echo outputdir "$outputdir"
-  echo outputdirbase"$outputdir""$base"
-  echo templatedir "$templatedir"
-  echo template "$docx"
 }
 
 # ---  CLEAN  ------------------------------------
@@ -100,11 +100,11 @@ pdf() {
 #TODO Case statement to select output formats
 
 main() {
+  vars "$1"
+  #echo_vars # uncomment for debugging
   check_args "$@"
   check_dependencies
-  vars "$1"
   check_dirs
-  #echo_vars # uncomment for debugging
   clean
   ## Optional outputs
   ## Uncomment any unneeded outputs
