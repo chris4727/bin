@@ -14,7 +14,7 @@ vars() {
 check_args() {
   if [ $# -ne 1 ]; then
     printf "${red}Error:${nc} This script expects one argument <script_name>\n"
-    printf "${grn}Usage:${nc} mksh <script_name>\n"
+    printf "${grn}Usage:${nc} mksh ${prp}<script_name>${nc}\n"
     exit 1
   fi
 }
