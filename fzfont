@@ -1,0 +1,54 @@
+#!/usr/bin/bash
+# ==  FPAC  ======================================
+# Description: Search for fonts on the system
+# Author: chris4727
+# Dependancies: 
+# - fzf
+# grep
+
+vars() {
+  red="\033[0;31m"
+  yel="\033[0;33m"
+  grn="\033[0;32m"
+  blu="\033[0;34m"
+  prp="\033[0;35m"
+  nc="\033[0m"
+}
+
+check_dependencies() {
+  if ! command -v "fzf" &> /dev/null
+  then
+    printf "${red}Error:${nc} fzf is not installed\n"
+    printf "${blu}::${nc} Install and try again\n"
+    exit 1
+  fi
+  if ! command -v "grep" &> /dev/null
+  then
+    printf "${red}Error:${nc} grep is not installed\n"
+    printf "${blu}::${nc} Install and try again\n"
+    exit 1
+  fi
+}
+
+check_args() {
+  if [ "$#" -ne 0 ]; then
+    printf "${red}Error:${nc} This script does not accept arguments\n"
+    printf "${grn}Usage:${nc} fpac\n"
+    exit 1
+  fi
+}
+
+font_search() {
+  fonts=$(fc-list | fzf --border-label=" FONTS " --tmux 70%)
+}
+
+main() {
+  vars "$@"
+  check_dependencies
+  check_args "$@"
+  font_search
+  check_selected
+}
+
+main "$@"
+
