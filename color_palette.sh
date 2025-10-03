@@ -1,7 +1,7 @@
 #!/usr/bin/sh
 # ==  COLOR SWATCH  ==============================
 # Description:
-# - Create .png from hex codes
+# - Create .png from hex codes in markdown table from notes
 # Author: chris4727
 # Dependancies:
 # - imagemagick
