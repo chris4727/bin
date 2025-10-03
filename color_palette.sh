@@ -52,7 +52,7 @@ mkcolor() {
       hexcode=$(echo "$line" | awk '{print $5}')
   
       #Create small images from hex codes in table
-      magick -size 100x100 xc:"$hexcode" "$colorname".png
+      magick -size 150x50 xc:"$hexcode" "$colorname".png
       printf "${blu}::${nc} Created "$colorname.png"\n"
   done < "$file"
 }
