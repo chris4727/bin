@@ -10,7 +10,6 @@ vars() {
   template="$HOME/.local/bin/TEMPLATE.sh"
 }
 
-
 check_args() {
   if [ $# -ne 1 ]; then
     printf "${red}Error:${nc} This script expects one argument <script_name>\n"
@@ -34,7 +33,12 @@ mksh() {
 main() {
   vars
   check_args "$@"
-  mksh "$1"
+  # TODO Only run this function if file doesn't exist
+  if [ ! -f "$1" ]; then
+    mksh "$1"
+  else
+    $EDITOR "$1"
+  fi
 }
 
 main "$@"
