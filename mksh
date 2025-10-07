@@ -6,14 +6,15 @@
 vars() {
   red="\033[0;31m"
   grn="\033[0;32m"
+  prp="\033[0;35m"
   nc="\033[0m" # No Color
   template="$HOME/.local/bin/TEMPLATE.sh"
 }
 
 check_args() {
   if [ $# -ne 1 ]; then
-    printf "${red}Error:${nc} This script expects one argument <script_name>\n"
-    printf "${grn}Usage:${nc} mksh ${prp}<script_name>${nc}\n"
+    printf "${red}Error:${nc} This script expects one argument ${prp}{{script_name}}${nc}\n"
+    printf "${grn}Usage:${nc} mksh ${prp}{{script_name}}${nc}\n"
     exit 1
   fi
 }
