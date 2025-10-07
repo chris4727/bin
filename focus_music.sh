@@ -5,6 +5,12 @@
 # Author: chris4727
 # Dependancies:
 # - mpv
+# TODO
+# - Stop playing command
+# - Accept optional url as argument
+# - Select from several predefined streams
+# - Select from local playlist
+# - Play spinner while playing music. ascii cd or tape?
 
 vars() {
   url="$1"
