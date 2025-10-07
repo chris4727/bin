@@ -6,11 +6,11 @@
 # Dependancies:
 # - mpv
 # TODO
-# - Stop playing command
-# - Accept optional url as argument
-# - Select from several predefined streams
-# - Select from local playlist
-# - Play spinner while playing music. ascii cd or tape?
+# - [x] Stop playing command
+# - [ ] Accept optional url as argument
+# - [ ] Select from several predefined streams
+# - [ ] Select from local playlist
+# - [ ] Play spinner while playing music. ascii cd or tape?
 
 vars() {
   url="$1"
@@ -44,6 +44,8 @@ check_args() {
 }
 
 play_music() {
+  printf "${blu} ::${nc} ${grn}Playing...${nc}\n"
+  printf "${blu} ::${nc} Press ${prp}Ctrl+c${nc} to stop\n"
   mpv --no-video --really-quiet "$stream_url"
 }
 
