@@ -14,18 +14,12 @@
 
 vars() {
   url="$1"
-  red="\033[0;31m"
-  yel="\033[0;33m"
-  grn="\033[0;32m"
-  blu="\033[0;34m"
-  prp="\033[0;35m"
-  nc="\033[0m"
 }
 
 check_dependencies() {
   if ! command -v "mpv" &> /dev/null
   then
-    printf "${red}Error:${nc} mpv is not installed\n"
+    printf "${RD1}Error:${NC} mpv is not installed\n"
     exit 1
   fi
 }
@@ -36,19 +30,19 @@ check_dependencies() {
 
 check_args() {
   if [ "$#" -ne 0 ]; then
-    printf "${red}Error:${nc} This script expects no arguments\n"
-    printf "${grn}Usage:${nc} focus_music.sh\n"
+    printf "${RD1}Error:${NC} This script expects no arguments\n"
+    printf "${GR1}Usage:${NC} focus_music.sh\n"
     exit 1
   fi
 }
 
 select_music() {
-  printf "${blu} ::${nc} What do you want to listen to? (${prp}1 or 5${nc})\n"
-  printf "${grn}   1.${nc} ${prp}Nujabes${nc} Instrumental mix\n"
-  printf "${grn}   2.${nc} ${prp}A Tribe Called Quest${nc} mix\n"
-  printf "${grn}   3.${nc} ${prp}J Dilla${nc} mix\n"
-  printf "${grn}   4.${nc} ${prp}Andersen .Paak${nc} mix\n"
-  printf "${grn}   5.${nc} ${prp}Steezyaf${nc} Coffee Shop Radio\n"
+  printf "${BL1} ::${NC} What do you want to listen to? (${PR1}1 or 5${NC})\n"
+  printf "${GR1}   1.${NC} ${PR1}Nujabes${NC} Instrumental mix\n"
+  printf "${GR1}   2.${NC} ${PR1}A Tribe Called Quest${NC} mix\n"
+  printf "${GR1}   3.${NC} ${PR1}J Dilla${NC} mix\n"
+  printf "${GR1}   4.${NC} ${PR1}Andersen .Paak${NC} mix\n"
+  printf "${GR1}   5.${NC} ${PR1}Steezyaf${NC} Coffee Shop Radio\n"
   
   read -p "Enter selection (1-5): " choice
   
@@ -69,14 +63,14 @@ select_music() {
       stream_url="https://www.youtube.com/watch?v=UI5NKkW8acM&pp=ygUIc3RlZXp5YWY%3D" # Steezyaf Coffee Shop Radio
       ;;
     *)
-      printf "${yel}Invalid choice:${nc} Enter a number between 1 and 5\n"
+      printf "${YL1}Invalid choice:${NC} Enter a number between 1 and 5\n"
       ;;
   esac 
 }
 
 play_music() {
-  printf "${blu} ::${nc} ${grn}Playing...${nc}\n"
-  printf "${blu} ::${nc} Press ${prp}Ctrl+c${nc} to stop\n"
+  printf "${BL1} ::${NC} ${GR1}Playing...${NC}\n"
+  printf "${BL1} ::${NC} Press ${PR1}Ctrl+c${NC} to stop\n"
   mpv --no-video --really-quiet "$stream_url"
 }
 

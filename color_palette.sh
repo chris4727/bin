@@ -9,18 +9,12 @@
 
 vars() {
   file="$1"
-  red="\033[0;31m"
-  yel="\033[0;33m"
-  grn="\033[0;32m"
-  blu="\033[0;34m"
-  prp="\033[0;35m"
-  nc="\033[0m"
 }
 
 check_dependencies() {
   if ! command -v "magick" &> /dev/null
   then
-    printf "${red}Error:${nc} imagemagick is not installed\n"
+    printf "${RD1}Error:${NC} imagemagick is not installed\n"
     exit 1
   fi
 }
@@ -31,8 +25,8 @@ check_dependencies() {
 
 check_args() {
   if [ "$#" -lt 1 ]; then
-    printf "${red}Error:${nc} This script expects one argument\n"
-    printf "${grn}Usage:${nc} color_swatch.sh ${prp}<#FFFFFF>${nc}\n"
+    printf "${RD1}Error:${NC} This script expects one argument\n"
+    printf "${grn}Usage:${NC} color_swatch.sh ${PR1}<#FFFFFF>${NC}\n"
     exit 1
   fi
 }
@@ -53,7 +47,7 @@ mkcolor() {
   
       #Create small images from hex codes in table
       magick -size 150x50 xc:"$hexcode" "$colorname".png
-      printf "${blu}::${nc} Created "$colorname.png"\n"
+      printf "${BL1}::${NC} Created "$colorname.png"\n"
   done < "$file"
 }
 
