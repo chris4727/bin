@@ -43,21 +43,33 @@ check_args() {
 }
 
 select_music() {
-  printf "${blu} ::${nc} What do you want to listen to? (${prp}1 or 2${nc})\n"
+  printf "${blu} ::${nc} What do you want to listen to? (${prp}1 or 5${nc})\n"
   printf "${grn}   1.${nc} ${prp}Nujabes${nc} Instrumental mix\n"
-  printf "${grn}   2.${nc} ${prp}Steezyaf${nc} Coffee Shop Radio\n"
+  printf "${grn}   2.${nc} ${prp}A Tribe Called Quest${nc} mix\n"
+  printf "${grn}   3.${nc} ${prp}J Dilla${nc} mix\n"
+  printf "${grn}   4.${nc} ${prp}Andersen .Paak${nc} mix\n"
+  printf "${grn}   5.${nc} ${prp}Steezyaf${nc} Coffee Shop Radio\n"
   
-  read -p "Enter selection (1-2): " choice
+  read -p "Enter selection (1-5): " choice
   
   case $choice in 
     1)
       stream_url="https://www.youtube.com/watch?v=z3aS5AwhJSU&list=RDz3aS5AwhJSU&start_radio=1" # Nujabes playlist
       ;;
     2)
+      stream_url="https://www.youtube.com/watch?v=hWEan7Bv65w" # Tribe Called Quest playlist
+      ;;
+    3)
+      stream_url="https://www.youtube.com/watch?v=QEmBwBccYjY&list=RDQEmBwBccYjY&start_radio=1" # J Dilla mix
+      ;;
+    4)
+      stream_url="https://www.youtube.com/watch?v=uIdJ3BjhkaU" # Andersen .Paak mix
+      ;;
+    5)
       stream_url="https://www.youtube.com/watch?v=UI5NKkW8acM&pp=ygUIc3RlZXp5YWY%3D" # Steezyaf Coffee Shop Radio
       ;;
     *)
-      printf "${yel}Invalid choice:${nc} Enter a number bewtween 1 and 2\n"
+      printf "${yel}Invalid choice:${nc} Enter a number between 1 and 5\n"
       ;;
   esac 
 }
