@@ -56,8 +56,9 @@ select_music() {
   printf "${GR1}   16.${NC} ${PR1}MAJ x Ngoc Lan${NC} Timeless hip-hop\n"
   printf "${GR1}   17.${NC} ${PR1}MAJ x Hikko Mori${NC} 70's Jazz funk & fusion\n"
   printf "${GR1}   18.${NC} ${PR1}MAJ x Vittilucchi${NC} Original samples\n"
+  printf "${GR1}   19.${NC} ${PR1}DJ Noize${NC} 90's R&B\n"
   
-  read -p "Enter selection (1-18): " choice
+  read -p "Enter selection (1-19): " choice
   
   case $choice in 
     1)
@@ -113,6 +114,9 @@ select_music() {
       ;;
     18)
       stream_url="https://www.youtube.com/watch?v=1oZ-yJF_2eg" # MAJ x Vittilucchi Original samples
+      ;;
+    19)
+      stream_url="https://www.youtube.com/watch?v=AGSuuS_n24Q&list=RDAGSuuS_n24Q&start_radio=1" # DJ Noize 90's R&B
       ;;
     *)
       printf "${YL1}Invalid choice:${NC} Enter the number of your selection\n"
