@@ -48,8 +48,14 @@ select_music() {
   printf "${GR1}   8.${NC} ${PR1}MAJ x Gia Fu${NC} Colombian salsa\n"
   printf "${GR1}   9.${NC} ${PR1}MAJ x Gia Fu${NC} Venezuelan salsa\n"
   printf "${GR1}   10.${NC} ${PR1}MAJ x Kengo${NC} Japanese soul\n"
+  printf "${GR1}   11.${NC} ${PR1}MAJ x Ryan${NC} 90's hip-hop\n"
+  printf "${GR1}   12.${NC} ${PR1}MAJ x Cami Layé Okún${NC} Afro-cuban\n"
+  printf "${GR1}   13.${NC} ${PR1}MAJ${NC} Holiday spirit\n"
+  printf "${GR1}   14.${NC} ${PR1}MAJ x Sabor A Mi${NC} 50's Bolero trios\n"
+  printf "${GR1}   15.${NC} ${PR1}MAJ x Russ Ryan${NC} R&B street soul\n"
+  printf "${GR1}   16.${NC} ${PR1}MAJ x Ngoc Lan${NC} Timeless hip-hop\n"
   
-  read -p "Enter selection (1-10): " choice
+  read -p "Enter selection (1-16): " choice
   
   case $choice in 
     1)
@@ -81,6 +87,24 @@ select_music() {
       ;;
     10)
       stream_url="https://www.youtube.com/watch?v=i_3u3uJ4F9E" # MAJ Kengo Japanese Soul
+      ;;
+    11)
+      stream_url="https://www.youtube.com/watch?v=Kbn5LmLtcvE" # MAJ x Ryan 90s Hip-hop
+      ;;
+    12)
+      stream_url="https://www.youtube.com/watch?v=YC7faDixT9A" # MAJ x Cami Layé Okún Afro-cuban
+      ;;
+    13)
+      stream_url="https://www.youtube.com/watch?v=4UTl1VvYLzM" # MAJ Holiday spirit
+      ;;
+    14)
+      stream_url="https://www.youtube.com/watch?v=o7gBxy0cU2k" # MAJ x Sabor A Mi 50s Bolero
+      ;;
+    15)
+      stream_url="https://www.youtube.com/watch?v=6jFCgeQ7F_A&list=RD6jFCgeQ7F_A&start_radio=1" # MAJ x Russ Ryan R&B street soul
+      ;;
+    16)
+      stream_url="https://www.youtube.com/watch?v=toIRZvhYb4Y" # MAJ x Ngoc Lan Timeless Hip-hop
       ;;
     *)
       printf "${YL1}Invalid choice:${NC} Enter the number of your selection\n"
