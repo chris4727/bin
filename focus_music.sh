@@ -43,8 +43,13 @@ select_music() {
   printf "${GR1}   3.${NC} ${PR1}J Dilla${NC} mix\n"
   printf "${GR1}   4.${NC} ${PR1}Andersen .Paak${NC} mix\n"
   printf "${GR1}   5.${NC} ${PR1}Steezyaf${NC} Coffee Shop Radio\n"
+  printf "${GR1}   6.${NC} ${PR1}MAJ${NC} UK Jazz\n"
+  printf "${GR1}   7.${NC} ${PR1}MAJ x FloFilz${NC} 70's electric piano\n"
+  printf "${GR1}   8.${NC} ${PR1}MAJ x Gia Fu${NC} Colombian salsa\n"
+  printf "${GR1}   9.${NC} ${PR1}MAJ x Gia Fu${NC} Venezuelan salsa\n"
+  printf "${GR1}   10.${NC} ${PR1}MAJ x Kengo${NC} Japanese soul\n"
   
-  read -p "Enter selection (1-5): " choice
+  read -p "Enter selection (1-10): " choice
   
   case $choice in 
     1)
@@ -62,8 +67,23 @@ select_music() {
     5)
       stream_url="https://www.youtube.com/watch?v=UI5NKkW8acM&pp=ygUIc3RlZXp5YWY%3D" # Steezyaf Coffee Shop Radio
       ;;
+    6)
+      stream_url="https://www.youtube.com/watch?v=NFjBI_qTrTQ" # MAJ UK Jazz
+      ;;
+    7)
+      stream_url="https://www.youtube.com/watch?v=EwFQkSOhHO0" # MAJ FloFilz 70s Electric Piano
+      ;;
+    8)
+      stream_url="https://www.youtube.com/watch?v=E_b-Q0xiTmo" # MAJ Gia Fu Colombian Salsa
+      ;;
+    9)
+      stream_url="https://www.youtube.com/watch?v=KGPhGui0U-g" # MAJ Gia Fu Venezuelan Salsa
+      ;;
+    10)
+      stream_url="https://www.youtube.com/watch?v=i_3u3uJ4F9E" # MAJ Kengo Japanese Soul
+      ;;
     *)
-      printf "${YL1}Invalid choice:${NC} Enter a number between 1 and 5\n"
+      printf "${YL1}Invalid choice:${NC} Enter the number of your selection\n"
       ;;
   esac 
 }
