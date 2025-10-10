@@ -7,6 +7,8 @@
 # - mpv
 # TODO
 # - [x] Stop playing command
+# - [ ] Pause command
+# - [ ] Show the current selection that is playing
 # - [ ] Accept optional url as argument
 # - [x] Select from several predefined streams
 # - [ ] Select from local playlist
