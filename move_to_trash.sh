@@ -1,8 +1,10 @@
 #!/usr/bin/sh
 # ==  move_to_trash.sh  ======================================
-# Description: 
+# Description:
+# - Moves files or directories to the $TRASH
 # Author: chris4727
-# Dependancies: 
+# Dependancies:
+# - printf
 
 check_trash() {
   if [ -z $TRASH ]; then
