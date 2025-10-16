@@ -14,10 +14,6 @@ check_trash() {
   fi
 }
 
-#echo_vars() {
-#   For debugging
-#}
-
 check_args() {
   if [ "$#" -lt 1 ]; then
     printf "${RD1}==> Error:${NC} You didn't indicate anything to move to the trash\n"
@@ -34,7 +30,6 @@ trash() {
 
 main() {
   check_trash
-  #echo_vars
   check_args "$@"
   trash "$@"
 }
