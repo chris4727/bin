@@ -25,6 +25,7 @@ check_args() {
 trash() {
   printf "${GR1}==> ${NC}Moving files to trash\n"
   for file in "$@"; do
+    mv $file $TRASH
     printf "${BL1} -> ${PR1}$file ${NC}moved to trash\n"
   done
   printf "${GR1}==> ${NC}Files moved to ${PR1}$TRASH${NC}\n"
