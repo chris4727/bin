@@ -40,25 +40,25 @@ check_args() {
 
 select_music() {
   printf "${BL1} ::${NC} What do you want to listen to? (${PR1}1 or 5${NC})\n"
-  printf "${GR1}   1.${NC} ${PR1}Nujabes${NC} Instrumental mix\n"
-  printf "${GR1}   2.${NC} ${PR1}A Tribe Called Quest${NC} mix\n"
-  printf "${GR1}   3.${NC} ${PR1}J Dilla${NC} mix\n"
-  printf "${GR1}   4.${NC} ${PR1}Andersen .Paak${NC} mix\n"
-  printf "${GR1}   5.${NC} ${PR1}Steezyaf${NC} Coffee Shop Radio\n"
-  printf "${GR1}   6.${NC} ${PR1}MAJ${NC} UK Jazz\n"
-  printf "${GR1}   7.${NC} ${PR1}MAJ x FloFilz${NC} 70's electric piano\n"
-  printf "${GR1}   8.${NC} ${PR1}MAJ x Gia Fu${NC} Colombian salsa\n"
-  printf "${GR1}   9.${NC} ${PR1}MAJ x Gia Fu${NC} Venezuelan salsa\n"
-  printf "${GR1}   10.${NC} ${PR1}MAJ x Kengo${NC} Japanese soul\n"
-  printf "${GR1}   11.${NC} ${PR1}MAJ x Ryan${NC} 90's hip-hop\n"
-  printf "${GR1}   12.${NC} ${PR1}MAJ x Cami Layé Okún${NC} Afro-cuban\n"
-  printf "${GR1}   13.${NC} ${PR1}MAJ${NC} Holiday spirit\n"
-  printf "${GR1}   14.${NC} ${PR1}MAJ x Sabor A Mi${NC} 50's Bolero trios\n"
-  printf "${GR1}   15.${NC} ${PR1}MAJ x Russ Ryan${NC} R&B street soul\n"
-  printf "${GR1}   16.${NC} ${PR1}MAJ x Ngoc Lan${NC} Timeless hip-hop\n"
-  printf "${GR1}   17.${NC} ${PR1}MAJ x Hikko Mori${NC} 70's Jazz funk & fusion\n"
-  printf "${GR1}   18.${NC} ${PR1}MAJ x Vittilucchi${NC} Original samples\n"
-  printf "${GR1}   19.${NC} ${PR1}DJ Noize${NC} 90's R&B\n"
+  printf "${GR1}    1. ${NC} ${PR1}Nujabes${NC} Instrumental mix\n"
+  printf "${GR1}    2. ${NC} ${PR1}A Tribe Called Quest${NC} mix\n"
+  printf "${GR1}    3. ${NC} ${PR1}J Dilla${NC} mix\n"
+  printf "${GR1}    4. ${NC} ${PR1}Andersen .Paak${NC} mix\n"
+  printf "${GR1}    5. ${NC} ${PR1}Steezyaf${NC} Coffee Shop Radio\n"
+  printf "${GR1}    6. ${NC} ${PR1}MAJ${NC} UK Jazz\n"
+  printf "${GR1}    7. ${NC} ${PR1}MAJ x FloFilz${NC} 70's electric piano\n"
+  printf "${GR1}    8. ${NC} ${PR1}MAJ x Gia Fu${NC} Colombian salsa\n"
+  printf "${GR1}    9. ${NC} ${PR1}MAJ x Gia Fu${NC} Venezuelan salsa\n"
+  printf "${GR1}    10.${NC} ${PR1}MAJ x Kengo${NC} Japanese soul\n"
+  printf "${GR1}    11.${NC} ${PR1}MAJ x Ryan${NC} 90's hip-hop\n"
+  printf "${GR1}    12.${NC} ${PR1}MAJ x Cami Layé Okún${NC} Afro-cuban\n"
+  printf "${GR1}    13.${NC} ${PR1}MAJ${NC} Holiday spirit\n"
+  printf "${GR1}    14.${NC} ${PR1}MAJ x Sabor A Mi${NC} 50's Bolero trios\n"
+  printf "${GR1}    15.${NC} ${PR1}MAJ x Russ Ryan${NC} R&B street soul\n"
+  printf "${GR1}    16.${NC} ${PR1}MAJ x Ngoc Lan${NC} Timeless hip-hop\n"
+  printf "${GR1}    17.${NC} ${PR1}MAJ x Hikko Mori${NC} 70's Jazz funk & fusion\n"
+  printf "${GR1}    18.${NC} ${PR1}MAJ x Vittilucchi${NC} Original samples\n"
+  printf "${GR1}    19.${NC} ${PR1}DJ Noize${NC} 90's R&B\n"
   
   read -p "Enter selection (1-19): " choice
   
@@ -122,6 +122,7 @@ select_music() {
       ;;
     *)
       printf "${YL1}Invalid choice:${NC} Enter the number of your selection\n"
+      exit 1
       ;;
   esac 
 }
