@@ -21,8 +21,8 @@
 select_pokemon() {
   printf "${BL1} ::${NC} What is your favorite ${PR1}Pokemon${NC}?\n"
   printf "${GR1}    1. ${NC} ${GR1}Bulbasaur${NC}\n"
-  printf "${GR1}    2. ${NC} ${PR1}Gengar${NC}\n"
-  printf "${GR1}    3. ${NC} ${PR1}Ghastly${NC}\n"
+  printf "${GR1}    2. ${NC} ${PR1}Ghastly${NC}\n"
+  printf "${GR1}    3. ${NC} ${PR1}Gengar${NC}\n"
   printf "${GR1}    4. ${NC} ${YL1}Pikachu${NC}\n"
   printf "${GR1}    5. ${NC} ${BL1}Squirtle${NC}\n"
 
@@ -52,7 +52,7 @@ EOF
         cat << EOF
 
 EOF
-        printf "${PR1}Gengar:${NC} The ${PR1}ghost${NC} type Pokemon\n"
+        printf "${PR1}Ghastly:${NC} The ${PR1}ghost${NC} type Pokemon\n"
           )"
         ;;
       3)
@@ -76,7 +76,7 @@ ${PR1}⠀⠀⠀⠙⣶⣶⣿⠢⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠀⠀⠀�
 ${PR1}⠀⠀⠀⠀⠀⠉⠀⠀⠀⠙⢿⣳⠞⠳⡄⠀⠀⠀⢀⡞⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ${PR1}⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠀⠀⠹⣄⣀⡤⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 EOF
-        printf "${PR1}Ghastly:${NC} The ${PR1}ghost${NC} type Pokemon\n"
+        printf "${PR1}Gengar:${NC} The ${PR1}ghost${NC} type Pokemon\n"
           )"
         ;;
       4)
