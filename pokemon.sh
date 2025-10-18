@@ -1,0 +1,1 @@
+../../dotfiles/pfetch/.local/bin/pokemon-bulbasaur.sh
