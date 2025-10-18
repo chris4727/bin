@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+# ==  POKEMON  ===================================
+# Description:
+# - Display ASCII art of slected Pokemon
+# Author: chris4727
+# Dependancies: 
 
 select_pokemon() {
   printf "${BL1} ::${NC} What is your favorite ${PR1}Pokemon${NC}?\n"
