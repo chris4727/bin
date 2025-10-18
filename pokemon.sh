@@ -161,8 +161,21 @@ EOF
   esac
 }
 
+continue() {
+  printf "${BL1} ::${NC} Would you like to select another? ${PR1}y/N${NC}\n"
+  read choice
+  case $choice in
+      y|Y)
+        select_pokemon
+        ;;
+      *)
+        exit 0
+  esac
+}
+
 main() {
   select_pokemon
+  continue
 }
 
 main "$@"
