@@ -6,6 +6,7 @@
 # Dependancies: 
 
 select_pokemon() {
+  clear
   printf "${BL1} ::${NC} What is your favorite ${PR1}Pokemon${NC}?\n"
   printf "${GR1}    1. ${NC} ${GR1}Bulbasaur${NC}\n"
   printf "${GR1}    2. ${NC} ${PR1}Ghastly${NC}\n"
@@ -18,6 +19,7 @@ select_pokemon() {
 
   case $choice in
       1)
+        clear
         echo -e "$(
         cat << EOF
 
@@ -36,6 +38,7 @@ EOF
           )"
         ;;
       2)
+        clear
         echo -e "$(
         cat << EOF
 
@@ -57,6 +60,7 @@ EOF
           )"
         ;;
       3)
+        clear
         echo -e "$(
         cat << EOF
 
@@ -81,6 +85,7 @@ EOF
           )"
         ;;
       4)
+        clear
         echo -e "$(
         cat << EOF
 
@@ -104,6 +109,7 @@ EOF
           )"
         ;;
       5)
+        clear
         echo -e "$(
         cat << EOF
 
@@ -126,6 +132,7 @@ EOF
           )"
         ;;
       6)
+        clear
         echo -e "$(
         cat << EOF
 
