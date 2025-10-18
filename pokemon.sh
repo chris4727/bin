@@ -1,23 +1,5 @@
 #!/usr/bin/env bash
 
-#      read_ascii() {
-#          # 'PF_COL1': Set the info name color according to ascii color.
-#          # 'PF_COL3': Set the title color to some other color. ¯\_(ツ)_/¯
-#          PF_COL1=${PF_COL1:-${1:-7}}
-#          PF_COL3=${PF_COL3:-$((${1:-7}%8+1))}
-#
-#          # POSIX sh has no 'var+=' so 'var=${var}append' is used. What's
-#          # interesting is that 'var+=' _is_ supported inside '$(())'
-#          # (arithmetic) though there's no support for 'var++/var--'.
-#          #
-#          # There is also no $'\n' to add a "literal"(?) newline to the
-#          # string. The simplest workaround being to break the line inside
-#          # the string (though this has the caveat of breaking indentation).
-#          while IFS= read -r line; do
-#              ascii="$ascii$line
-#  "
-#          done
-#      }
 select_pokemon() {
   printf "${BL1} ::${NC} What is your favorite ${PR1}Pokemon${NC}?\n"
   printf "${GR1}    1. ${NC} ${GR1}Bulbasaur${NC}\n"
@@ -149,27 +131,4 @@ main() {
 }
 
 main "$@"
-      # Using '<<-EOF' is the only way to loop over a command's
-      # output without the use of a pipe ('|').
-      # This ensures that any variables defined in the while loop
-      # are still accessible in the script.
-      #done <<-EOF
-      #$(printf %s "$ascii" | sed 's/^[\[3.m//g')
-    #EOF
-#}
-#!/usr/bin/sh
 
-#cat << EOF
-#EOF
-##!/usr/bin/sh
-#
-#cat << EOF
-#EOF
-##!/usr/bin/env bash
-#
-#cat << EOF
-#EOF
-##!/usr/bin/env bash
-#
-#cat << EOF
-#EOF
