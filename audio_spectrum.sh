@@ -38,9 +38,12 @@ check_args() {
 }
 
 show_spectrum() {
-  printf "${prp}Hello world!${nc}\n"
-  ffmpeg -i "$1" -lavfi showspectrumpic=s=800x1000:color=rainbow -frames:v 1 "$1".png
-  sxiv "$1".png
+  # Create spectrum image with magma colorscheme
+  # - Only print fatal errors
+  # - Use lavfi create spectrum 800x1000px using magma colorscheme
+  # - Only create 1 frame, output to inputname.png
+  ffmpeg -loglevel panic -i "$1" -lavfi showspectrumpic=s=800x1000:color=magma -frames:v 1 "$1".png
+  echo "$1.png"
 }
 
 main() {
