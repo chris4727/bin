@@ -7,11 +7,11 @@
 
 vars() {
   input_url="$1"
-  # Set output directory to arg 2, or default to $HOME/music/ytdlp
+  # Set output directory to arg 2, or default to $HOME/Music/ytdlp
   if [ $# -ge 2 ]; then
       output_dir=$2
   else
-      output_dir="$HOME/music/ytdlp"
+      output_dir="$HOME/Music/ytdlp"
   fi
   red="\033[0;31m"
   blu="\033[0;34m"
